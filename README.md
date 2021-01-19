@@ -1,4 +1,4 @@
-# covid63
+# covid63 Démo vue js
 
 ## Project setup
 ```
