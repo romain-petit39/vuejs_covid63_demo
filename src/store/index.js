@@ -1,17 +1,17 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import * as data from "../assets/csvjson.json";
-import axios from 'axios'
-import VueAxios from 'vue-axios'
+import axios from "axios";
+import VueAxios from "vue-axios";
 
 Vue.use(Vuex);
-Vue.use(VueAxios, axios)
+Vue.use(VueAxios, axios);
 
 export default new Vuex.Store({
   state: {
     data63: null,
     dataFr: null,
-    dataCentre: null
+    dataCentre: null,
+    dataCentres: [],
   },
   mutations: {
     SET_DATA_63(state, data) {
@@ -22,30 +22,43 @@ export default new Vuex.Store({
     },
     SET_DATA_CENTRE(state, data) {
       state.dataCentre = data;
-    }
+    },
+    SET_DATA_CENTRES(state, data) {
+      state.dataCentres = data;
+    },
   },
   actions: {
-    loadData63({commit}) {
-      axios.get('https://coronavirusapi-france.now.sh/LiveDataByDepartement?Departement=Puy-de-Dôme')
-      .then(response => response.data)
-      .then(data => commit('SET_DATA_63', data.LiveDataByDepartement[0]));
+    loadData63({ commit }) {
+      axios
+        .get(
+          "https://coronavirusapi-france.now.sh/LiveDataByDepartement?Departement=Puy-de-Dôme"
+        )
+        .then((response) => response.data)
+        .then((data) => commit("SET_DATA_63", data.LiveDataByDepartement[0]));
     },
-    loadDataFr({commit}) {
-      axios.get('https://coronavirusapi-france.now.sh/FranceLiveGlobalData')
-      .then(response => response.data)
-      .then(data => commit('SET_DATA_FR', data.FranceGlobalLiveData[0]));
+    loadDataFr({ commit }) {
+      axios
+        .get("https://coronavirusapi-france.now.sh/FranceLiveGlobalData")
+        .then((response) => response.data)
+        .then((data) => commit("SET_DATA_FR", data.FranceGlobalLiveData[0]));
     },
-    loadDataCentre({commit}, centre) {
-      
-      const centreData = data.filter((data) => data.gid === parseInt(centre.centre));
-      commit('SET_DATA_CENTRE', centreData[0]);
-    }
+    loadDataCentres({ commit }) {
+      axios.get("/json/centresData.json", { baseURL: window.location.origin }).then((response) => {
+        const puyDeDomeCenter = response.data.filter(
+          (center) => Math.floor(center.com_cp / 1000) === 63
+        );
+        commit("SET_DATA_CENTRES", puyDeDomeCenter);
+      });
+    },
+    loadDataCentre({ commit }, centre) {
+      axios.get("/json/centresData.json", { baseURL: window.location.origin }).then((response) => {
+        const centreData = response.data.filter(
+          (data) => data.gid === parseInt(centre.centre)
+        );
+        commit("SET_DATA_CENTRE", centreData[0]);
+      });
+    },
   },
   modules: {},
-  getters: {
-    puyDeDomeCenter: () => {
-      const puyDeDomeCenter = data.filter((center) => Math.floor(center.com_cp/1000) === 63);
-      return puyDeDomeCenter;
-    }
-  }
+  getters: {},
 });

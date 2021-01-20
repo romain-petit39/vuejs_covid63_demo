@@ -26,14 +26,14 @@ export default {
 #nav {
   padding: 10px 14px;
   background-color: #2c3e50;
-  color: white;
+  color: #ffffff;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #ffffff;
 
     &.router-link-exact-active {
       color: #42b983;

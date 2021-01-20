@@ -12,7 +12,7 @@
     </div>
     <div class="map">
       <h1>Les centres de vaccinations dans le puy de Dôme</h1>
-      <Map />
+      <Map :puyDeDomeCenter="dataCentres"/>
     </div>
   </div>
 </template>
@@ -31,9 +31,10 @@ export default {
   beforeCreate() {
     this.$store.dispatch("loadData63");
     this.$store.dispatch("loadDataFr");
+    this.$store.dispatch("loadDataCentres");
   },
   computed: {
-    ...mapState(["data63", "dataFr"]),
+    ...mapState(["data63", "dataFr","dataCentres"]),
   },
 };
 </script>

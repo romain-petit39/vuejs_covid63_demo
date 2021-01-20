@@ -31,7 +31,6 @@
 <script>
 import { latLng, icon } from "leaflet";
 import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
-import { mapGetters } from "vuex";
 import * as iconMarker from "../assets/map-pin.png";
 
 
@@ -43,6 +42,7 @@ export default {
     LMarker,
     LPopup,
   },
+  props: ["puyDeDomeCenter"],
   data() {
     return {
       zoom: 10,
@@ -60,9 +60,7 @@ export default {
       }),
     };
   },
- computed: {
-   ...mapGetters(['puyDeDomeCenter'])
- },
+ 
 };
 </script>
 
