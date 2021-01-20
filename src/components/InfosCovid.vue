@@ -1,45 +1,38 @@
 import InfosCovid from '@/components/InfosCovid.vue';
 <template>
   <div>
-    
-    <div class="viewport">
-      <md-toolbar :md-elevation="1">
-        <span class="md-title">{{ infosCovid.nom }} au {{ infosCovid.date }}</span>
-      </md-toolbar>
-
-      <md-list >
-        <!-- <md-subheader>général</md-subheader> -->
-
-        <md-list-item>
-          <div class="md-list-item-text">
-            <span>gueris {{ infosCovid.gueris }}</span>
-            <span>décès {{ infosCovid.deces }}</span>
-            <span>décès Ehpad {{  infosCovid.decesEhpad > 0 ? infosCovid.decesEhpad : 'Non renseigné'  }}</span>
-          </div>
-        </md-list-item>
-
+    <md-card >
+      <md-card-header>
+        <div class="md-title">
+          {{ infosCovid.nom }} au {{ infosCovid.date }}
+        </div>
+      </md-card-header>
+      <md-divider></md-divider>
+      <md-card-content class="card-content">
+        <span>guéris : {{ infosCovid.gueris }}</span>
+        <span>décès : {{ infosCovid.deces }}</span>
+        <span
+          >décès Ehpad :
+          {{
+            infosCovid.decesEhpad > 0 ? infosCovid.decesEhpad : "Non renseigné"
+          }}</span
+        >
         <md-divider></md-divider>
-        <md-subheader>Hospitalisations</md-subheader>
 
-        <md-list-item>
-          <div class="md-list-item-text">
-            <span>Hospitalisé {{ infosCovid.hospitalises }}</span>
+        <span>Hospitalisés : {{ infosCovid.hospitalises }}</span>
             <span
-              >Nouvelles hospitalisations
+              >Nouvelles hospitalisations :
               {{ infosCovid.nouvellesHospitalisations }}</span
             >
-            <span>Réanimations {{ infosCovid.reanimation }}</span>
+            <span>Réanimations : {{ infosCovid.reanimation }}</span>
             <span
-              >Nouvelles réanimations
+              >Nouvelles réanimations :
               {{ infosCovid.nouvellesReanimations }}</span
             >
-          </div>
-        </md-list-item>
-        <md-list-item>
-          <span class="source">Source : {{infosCovid.source.nom}}</span>
-        </md-list-item>
-      </md-list>
-    </div>
+            <md-divider></md-divider>
+            <span class="source">Source : {{infosCovid.source.nom}}</span>
+      </md-card-content>
+    </md-card>
   </div>
 </template>
 
@@ -51,15 +44,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.viewport {
-  width: 320px;
-  max-width: 100%;
-  display: inline-block;
-  vertical-align: top;
-  overflow: auto;
-  border: 1px solid rgba(#000, 0.12);
+.md-card {
+width: 400px;
+.card-content {
+      display: flex;
+    flex-direction: column;
+    padding: 10px 16px 0px;
 }
+}
+
 .source {
   font-size: 10px;
+  align-self: flex-start;
 }
 </style>

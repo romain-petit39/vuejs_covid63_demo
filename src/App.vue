@@ -1,21 +1,18 @@
 <template>
   <div id="app">
     <div id="nav">
-     | <router-link to="/">Home</router-link> |
+      <h1>COVID63</h1>
+      <router-link to="/">Home</router-link>
     </div>
     <router-view />
   </div>
 </template>
 
 <script>
-
-
 export default {
-  name: 'App',
-  components: {
-   
-  }
-}
+  name: "App",
+  components: {},
+};
 </script>
 
 <style lang="scss">
@@ -27,7 +24,12 @@ export default {
   color: #2c3e50;
 }
 #nav {
-  padding: 14px;
+  padding: 10px 14px;
+  background-color: #2c3e50;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   a {
     font-weight: bold;

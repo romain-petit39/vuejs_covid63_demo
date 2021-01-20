@@ -75,6 +75,12 @@ export default {
     #mapContainer {
       height: 100%;
       width: 100%;
+
+      ul {
+        li {
+          list-style: none;
+        }
+      }
     }
   }
 </style>

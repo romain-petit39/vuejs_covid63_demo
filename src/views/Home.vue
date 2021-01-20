@@ -2,7 +2,7 @@
   <div class="home">
     <div class="infos">
       <h1>Les dernières infos sur le covid</h1>
-      <div class="tabsInfos" v-if="data63 && dataFr">
+      <div class="cardsInfos" v-if="data63 && dataFr">
         <InfosCovid :infosCovid="data63" />
         <InfosCovid :infosCovid="dataFr" />
       </div>
@@ -39,7 +39,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.tabsInfos {
+.cardsInfos {
   display: flex;
   justify-content: space-around;
   width: 80%;

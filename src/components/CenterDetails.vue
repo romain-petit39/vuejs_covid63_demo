@@ -94,6 +94,13 @@ export default {
 .dataCentre {
   width: 80%;
   margin: auto;
+  .md-card {
+    margin-top: 20px;
+
+    .md-table-cell {
+      text-align: left;
+    }
+  }
  
   .viewport {
     width: 320px;
